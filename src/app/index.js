@@ -1,11 +1,11 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
-const initialState = {
+const MathInitialState = {
     val: 0,
     history: []
 };
 
-const reducer = ( state = initialState, action ) => {
+const MathReducer = ( state = MathInitialState, action ) => {
     let newState = {
         ...state,
         history: [...state.history]
@@ -25,23 +25,48 @@ const reducer = ( state = initialState, action ) => {
     return newState;
 };
 
-const store = createStore( reducer );
+const UserInitialReducer = {
+    name: "Hossam",
+    age: 22
+};
 
-store.subscribe( () => {
-    console.log( "Updated state", store.getState() );
+const UserReducer = ( state = UserInitialReducer, action ) => {
+    let newState = {
+        ...state
+    }
+    switch( action.type ) {
+        case "UPDATE_NAME":
+            newState.name = action.payload;
+            break;
+        case "UPDATE_AGE":
+            newState.age = action.payload;
+            break;
+    }
+    return newState;
+}
+
+const Store = createStore( combineReducers( { MathReducer, UserReducer } ) );
+
+Store.subscribe( () => {
+    console.log( "Updated state", Store.getState() );
 } );
 
-store.dispatch( {
+Store.dispatch( {
     type: "ADD",
     payload: 4
 } );
 
-store.dispatch( {
+Store.dispatch( {
     type: "ADD",
     payload: 9
 } );
 
-store.dispatch( {
-    type: "SUBTRACT",
-    payload: 3
+Store.dispatch( {
+    type: "UPDATE_NAME",
+    payload: "Ismail"
+} );
+
+Store.dispatch( {
+    type: "UPDATE_AGE",
+    payload: "24"
 } );
