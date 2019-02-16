@@ -1,23 +1,31 @@
 import { createStore } from 'redux';
 
-const initialState = 0;
+const initialState = {
+    val: 0,
+    history: []
+};
 
-const reducer = ( state, action ) => {
-    let copiedState = state;
+const reducer = ( state = initialState, action ) => {
+    let newState = {
+        ...state,
+        history: [...state.history]
+    }
 
     switch( action.type ) {
         case "ADD":
-            copiedState += action.payload;
+            newState.val += action.payload;
+            newState.history.push( action.payload );
             break;
-        case "SUBTRACT":
-            copiedState -= action.payload;
+        case "ADD":
+            newState.val -= action.payload;
+            newState.history.push( action.payload );
             break;
     }
 
-    return copiedState;
+    return newState;
 };
 
-const store = createStore( reducer, initialState );
+const store = createStore( reducer );
 
 store.subscribe( () => {
     console.log( "Updated state", store.getState() );
