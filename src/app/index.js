@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 
 const MathInitialState = {
     val: 0,
@@ -45,10 +45,19 @@ const UserReducer = ( state = UserInitialReducer, action ) => {
     return newState;
 }
 
-const Store = createStore( combineReducers( { MathReducer, UserReducer } ) );
+const myMiddleware = ( store ) => ( next ) => ( action ) => {
+    console.log( "Action", action );
+    next( action );
+};
+
+const Store = createStore(
+    combineReducers( { MathReducer, UserReducer } ),
+    {},
+    applyMiddleware( myMiddleware )
+);
 
 Store.subscribe( () => {
-    console.log( "Updated state", Store.getState() );
+    // console.log( "Updated state", Store.getState() );
 } );
 
 Store.dispatch( {
