@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
 
 const MathInitialState = {
     val: 0,
@@ -53,7 +54,7 @@ const myMiddleware = ( store ) => ( next ) => ( action ) => {
 const Store = createStore(
     combineReducers( { MathReducer, UserReducer } ),
     {},
-    applyMiddleware( myMiddleware )
+    applyMiddleware( createLogger() )
 );
 
 Store.subscribe( () => {
