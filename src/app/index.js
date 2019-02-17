@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
-import { App } from './components/App';
+import App from './containers/App';
 
 const initialPreferences = {
     notifications: false

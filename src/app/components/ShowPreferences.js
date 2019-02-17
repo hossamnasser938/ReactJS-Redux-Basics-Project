@@ -1,7 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-const ShowPreferences = ( props ) => {
+export const ShowPreferences = ( props ) => {
     return(
         <div>
           <h2>Current Preferences</h2>
@@ -9,11 +8,3 @@ const ShowPreferences = ( props ) => {
         </div>
     );
 };
-
-const mapStateToProps = ( state ) => {
-    return {
-        notifications: state.notifications
-    }
-};
-
-export default connect( mapStateToProps, () => { return {} } )( ShowPreferences );
