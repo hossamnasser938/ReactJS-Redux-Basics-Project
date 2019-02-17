@@ -30,11 +30,7 @@ const Store = createStore(
     applyMiddleware( createLogger() )
 );
 
-Store.subscribe( () => {
-    // console.log( "Updated state", Store.getState() );
-} );
-
 render(
   <Provider store={ Store }><App/></Provider>,
    window.document.getElementById("app")
- );
+);
