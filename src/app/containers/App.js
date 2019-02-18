@@ -2,6 +2,8 @@ import React from 'react';
 import { AdjustPreferences } from '../components/AdjustPreferences';
 import { ShowPreferences } from '../components/ShowPreferences';
 import { connect } from 'react-redux';
+import { enableNotifications, disableNotifications } from '../actions/PreferencesActions'
+
 
 class App extends React.Component {
     render() {
@@ -28,14 +30,10 @@ const mapStateToProps = ( state ) => {
 const mapDispatchToProps = ( dispatch ) => {
     return {
         ENABLE_NOTIFICATIONS: () => {
-            dispatch( {
-                type: "ENABLE_NOTIFICATIONS"
-            } );
+            dispatch( enableNotifications() );
         },
         DISABLE_NOTIFICATIONS: () => {
-            dispatch( {
-              type: "DISABLE_NOTIFICATIONS"
-            } );
+            dispatch( disableNotifications() );
         }
     };
 };
