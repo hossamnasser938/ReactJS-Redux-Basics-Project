@@ -30,7 +30,7 @@ const mapStateToProps = ( state ) => {
 const mapDispatchToProps = ( dispatch ) => {
     return {
         ENABLE_NOTIFICATIONS: () => {
-            dispatch( enableNotifications() );
+            enableNotifications()( dispatch );
         },
         DISABLE_NOTIFICATIONS: () => {
             dispatch( disableNotifications() );

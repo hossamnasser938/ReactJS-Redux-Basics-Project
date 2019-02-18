@@ -1,6 +1,10 @@
 export const enableNotifications = () => {
-    return {
-        type: "ENABLE_NOTIFICATIONS"
+    return ( dispatch ) => {
+        setTimeout( () => {
+            dispatch( {
+                type: "ENABLE_NOTIFICATIONS"
+            } );
+        } , 3000 );
     }
 }
 
